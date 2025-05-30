@@ -1,21 +1,88 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f2f2f2;
 }
 
-.orb{
-    border: 1px solid #000000;
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.orb {
+    border: 1px solid #000;
     width: 200px;
     height: 200px;
     border-radius: 50%;
+    margin: 20px auto;
 }
 
 .action {
-    margin: 10px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 button {
+    margin: 5px;
+    padding: 10px 20px;
     cursor: pointer;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
 }
+
+.category {
+    margin: 40px 0;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.articles {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.article-block {
+    border: 1px solid #ccc;
+    background: #fafafa;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 120px;
+    overflow-y: auto;
+}
+
+.toolbar {
+  margin-bottom: 10px;
+}
+
+.toolbar button {
+  background: #007bff;
+  border: 1px solid #ccc;
+  margin-right: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.post-button-container {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.post-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
