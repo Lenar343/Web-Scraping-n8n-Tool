@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="editor.css">
-    <title>first test yo testin it out yo</title>
-    <script src="index.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="editorp8.css"/>
+  <title>AI News Dashboard</title>
+  <script src="indexp8.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>third test yo</h1>
-        <p class="subheading">welcome to the website yo, click the button to continue
-        </p >
-        <div class="orb" id="orbID"></div>
-        <div class="action">
-            <button onclick="paint('red')">red</button>
-            <button onclick="paint('green')">green</button>
-            <button onclick="paint('yellow')">yellow</button>
+  <div class="container">
+    <h1>n8n Web Scraping</h1>
+    <p class="subheading">web scraping script</p>
 
-        </div>
+    <div class="category" id="display-messages">
+      <h2>Display Messages</h2>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <button onclick="execCmd('bold')"><b>B</b></button>
+        <button onclick="execCmd('italic')"><i>I</i></button>
+        <button onclick="execCmd('insertUnorderedList')">• List</button>
+        <button onclick="execCmd('backColor', 'yellow')">🖍 Highlight</button>
+        <button onclick="insertEmoji()">😀</button>
+      </div>
+
+      <!-- Articles/text blocks will load here -->
+      <div class="articles"></div>
+
+      <!-- Buttons -->
+      <button onclick="loadArticles('WS_Crypto')">Load Articles</button>
+
+      <!-- POST Button -->
+      <div class="post-button-container">
+        <button class="post-button" onclick="postContent()">POST</button>
+      </div>
     </div>
+  </div>
 </body>
 </html>
