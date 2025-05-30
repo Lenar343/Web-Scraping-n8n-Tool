@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function refreshArticles(table) {
   console.log(`Triggering n8n refresh for ${table.toUpperCase()}...`);
   try {
-    const res = await fetch('https://lenot344.app.n8n.cloud/webhook-test/refresh-page', {
+    const res = await fetch('https://lenot344.app.n8n.cloud/webhook/refresh-page', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ table }),
@@ -22,7 +22,7 @@ async function refreshArticles(table) {
 }
 
 async function loadArticles(table) {
-  const url = `https://lenot344.app.n8n.cloud/webhook-test/get-articles`;
+  const url = `https://lenot344.app.n8n.cloud/webhook/get-articles`;
 
   try {
     const res = await fetch(url, {
