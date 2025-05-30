@@ -45,9 +45,9 @@ async function loadArticles(table) {
     }
 
     const containerIdMap = {
-      WS_AI: 'display-messages',
-      WS_Crypto: 'display-messages',
-      WS_ML: 'display-messages'
+      WS_AI: 'display-ai',
+      WS_Crypto: 'display-crypto',
+      WS_ML: 'display-ml'
     };
     const containerId = containerIdMap[table] || 'ai';
     const container = document.querySelector(`#${containerId} .articles`);
