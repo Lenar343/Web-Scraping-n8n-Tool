@@ -10,12 +10,12 @@
 <body>
   <div class="container">
     <h1>n8n Web Scraping</h1>
-    <p class="subheading">web scraping script</p>
+    <p class="subheading">Web scraping dashboard</p>
 
-    <div class="category" id="display-messages">
-      <h2>Display Messages</h2>
+    <!-- CRYPTO -->
+    <div class="category" id="display-crypto">
+      <h2>Crypto Posts</h2>
 
-      <!-- Toolbar -->
       <div class="toolbar">
         <button onclick="execCmd('bold')"><b>B</b></button>
         <button onclick="execCmd('italic')"><i>I</i></button>
@@ -24,13 +24,52 @@
         <button onclick="insertEmoji()">😀</button>
       </div>
 
-      <!-- Articles/text blocks will load here -->
       <div class="articles"></div>
 
-      <!-- Buttons -->
-      <button onclick="loadArticles('WS_Crypto')">Load Articles</button>
+      <button onclick="loadArticles('WS_Crypto')">Load Crypto Articles</button>
 
-      <!-- POST Button -->
+      <div class="post-button-container">
+        <button class="post-button" onclick="postContent()">POST</button>
+      </div>
+    </div>
+
+    <!-- AI -->
+    <div class="category" id="display-ai">
+      <h2>AI Posts</h2>
+
+      <div class="toolbar">
+        <button onclick="execCmd('bold')"><b>B</b></button>
+        <button onclick="execCmd('italic')"><i>I</i></button>
+        <button onclick="execCmd('insertUnorderedList')">• List</button>
+        <button onclick="execCmd('backColor', 'yellow')">🖍 Highlight</button>
+        <button onclick="insertEmoji()">😀</button>
+      </div>
+
+      <div class="articles"></div>
+
+      <button onclick="loadArticles('WS_AI')">Load AI Articles</button>
+
+      <div class="post-button-container">
+        <button class="post-button" onclick="postContent()">POST</button>
+      </div>
+    </div>
+
+    <!-- MACHINE LEARNING -->
+    <div class="category" id="display-ml">
+      <h2>Machine Learning Posts</h2>
+
+      <div class="toolbar">
+        <button onclick="execCmd('bold')"><b>B</b></button>
+        <button onclick="execCmd('italic')"><i>I</i></button>
+        <button onclick="execCmd('insertUnorderedList')">• List</button>
+        <button onclick="execCmd('backColor', 'yellow')">🖍 Highlight</button>
+        <button onclick="insertEmoji()">😀</button>
+      </div>
+
+      <div class="articles"></div>
+
+      <button onclick="loadArticles('WS_ML')">Load ML Articles</button>
+
       <div class="post-button-container">
         <button class="post-button" onclick="postContent()">POST</button>
       </div>
