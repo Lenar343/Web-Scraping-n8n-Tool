@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // loadArticles('WS_Crypto'); // Uncomment if you want to load on page load
 });
 
-async function refreshArticles(table) {
+async function generateArticles(table) {
   console.log(`Triggering n8n refresh for ${table.toUpperCase()}...`);
   try {
-    const res = await fetch('https://lenot344.app.n8n.cloud/webhook/refresh-page', {
+    const res = await fetch('https://lenot344.app.n8n.cloud/webhook/generate-articles', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ table }),
@@ -14,8 +14,8 @@ async function refreshArticles(table) {
 
     if (!res.ok) throw new Error('Webhook call failed');
 
-    console.log(`Webhook triggered, waiting to load ${table}...`);
-    setTimeout(() => loadArticles(table), 180000); // Wait 3 minutes
+    console.log(`Webhook triggered, waiting to load ${table}... (1 Min)`);
+    setTimeout(() => loadArticles(table), 60000); // Wait 3 minutes
   } catch (err) {
     console.error(`Refresh error (${table}):`, err);
   }
