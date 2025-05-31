@@ -117,3 +117,57 @@ function postContent() {
   alert("POSTED! (Console has the data)");
   // You can replace this with a fetch() call to n8n if needed
 }
+
+async function generateAndDisplay(table) {
+  console.log(`Generating article for ${table}...`);
+  try {
+    const res = await fetch('https://lenot344.app.n8n.cloud/webhook/generate-articles', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ table })
+    });
+
+    if (!res.ok) throw new Error('Failed to trigger n8n generate-articles webhook');
+
+    console.log('Generation triggered. Waiting 60 seconds...');
+    setTimeout(() => loadLatestArticle(table), 60000); // 60s delay
+  } catch (err) {
+    console.error(`Generation error (${table}):`, err);
+  }
+}
+
+async function loadLatestArticle(table) {
+  const url = `https://lenot344.app.n8n.cloud/webhook/get-articles`;
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ table, mode: 'latest' })
+    });
+
+    const data = await res.json();
+    const article = Array.isArray(data) ? data[0] : data;
+
+    const containerIdMap = {
+      WS_AI: 'display-ai',
+      WS_Crypto: 'display-crypto',
+      WS_ML: 'display-ml'
+    };
+    const containerId = containerIdMap[table];
+    const container = document.querySelector(`#${containerId} .articles`);
+    if (!container) return;
+
+    const block = document.createElement('div');
+    block.className = 'article-block';
+    block.contentEditable = true;
+
+    const title = article.title || article.id || "Untitled";
+    const content = article.content || article.Content || "No content";
+
+    block.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
+    container.prepend(block); // ⬅️ Put at the top
+  } catch (err) {
+    console.error(`Error loading latest article for ${table}:`, err);
+  }
+}
