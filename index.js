@@ -3,7 +3,8 @@ const articleCache = {
   WS_Crypto: [],
   WS_ML: []
 };
-
+// nfsdjfndkjlfn
+// fsjndfjklnsdjkfnsd
 function populateDropdown(table, articles) {
   const dropdownIdMap = {
     WS_AI: 'ai-dropdown',
