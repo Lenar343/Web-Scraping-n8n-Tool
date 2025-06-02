@@ -1,95 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="editor.css"/>
-  <title>AI News Dashboard</title>
-  <script src="index.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N8N Web Client</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>n8n Web Scraping</h1>
-    <p class="subheading">Web scraping dashboard</p>
-
-    <!-- CRYPTO -->
-    <div class="category" id="display-crypto">
-      <h2>Crypto Posts</h2>
-
-      <div class="toolbar">
-        <button onclick="execCmd('bold')"><b>B</b></button>
-        <button onclick="execCmd('italic')"><i>I</i></button>
-        <button onclick="execCmd('insertUnorderedList')">• List</button>
-        <button onclick="execCmd('backColor', 'yellow')">🖍 Highlight</button>
-        <button onclick="insertEmoji()">😀</button>
-      </div>
-
-      <div class="articles"></div>
-
-      <button onclick="loadArticles('WS_Crypto')">Load Crypto Article</button>
-      <button onclick="generateAndDisplay('WS_Crypto')">Generate Crypto Article</button>
-
-      <select id="crypto-dropdown" onchange="selectArticle('WS_Crypto', this.value)">
-      <option value="">Select a crypto article</option>
-      </select>
-
-      <div class="post-button-container">
-        <button class="post-button" onclick="postContent()">POST</button>
-      </div>
-    </div>
-
-    <!-- AI -->
-    <div class="category" id="display-ai">
-      <h2>AI Posts</h2>
-
-      <div class="toolbar">
-        <button onclick="execCmd('bold')"><b>B</b></button>
-        <button onclick="execCmd('italic')"><i>I</i></button>
-        <button onclick="execCmd('insertUnorderedList')">• List</button>
-        <button onclick="execCmd('backColor', 'yellow')">🖍 Highlight</button>
-        <button onclick="insertEmoji()">😀</button>
-      </div>
-
-      <div class="articles"></div>
-
-      <button onclick="loadArticles('WS_AI')">Load AI Article</button>
-      <button onclick="generateAndDisplay('WS_AI')">Generate AI Article</button>
-
-      <select id="ai-dropdown" onchange="selectArticle('WS_AI', this.value)">
-      <option value="">Select an AI article</option>
-      </select>
-
-      <div class="post-button-container">
-        <button class="post-button" onclick="postContent()">POST</button>
-      </div>
-    </div>
-
-    <!-- MACHINE LEARNING -->
-    <div class="category" id="display-ml">
-      <h2>Machine Learning Posts</h2>
-
-      <div class="toolbar">
-        <button onclick="execCmd('bold')"><b>B</b></button>
-        <button onclick="execCmd('italic')"><i>I</i></button>
-        <button onclick="execCmd('insertUnorderedList')">• List</button>
-        <button onclick="execCmd('backColor', 'yellow')">🖍 Highlight</button>
-        <button onclick="insertEmoji()">😀</button>
-      </div>
-
-      <div class="articles"></div>
-      
-
-      <button onclick="loadArticles('WS_ML')">Load ML Article</button>
-      <button onclick="generateAndDisplay('WS_ML')">Generate ML Article</button>
-
-      <select id="ml-dropdown" onchange="selectArticle('WS_ML', this.value)">
-      <option value="">Select an ML article</option>
-      </select>
-
-      <div class="post-button-container">
-        <button class="post-button" onclick="postContent()">POST</button>
-      </div>
-    </div>
+<div class="container">
+  <!-- URL Input Section -->
+  <div class="post-url">
+    <input type="text" id="urlInput" placeholder="Enter URL here">
+    <button onclick="postURL()">POST</button>
   </div>
+
+  <!-- Text Editor Section -->
+  <div class="editor-toolbar">
+    <button onclick="formatText('bold')">Bold</button>
+    <button onclick="highlightText()">Highlight</button>
+    <button onclick="insertList()">• List</button>
+    <button onclick="insertEmoji()">😀</button>
+  </div>
+
+  <textarea id="textInput" placeholder="Enter or paste your text here..."></textarea>
+^
+  <!-- Text Editor Section -->
+  <div class="editor-toolbar">
+    <button onclick="formatText('bold')">Bold</button>
+    <button onclick="highlightText()">Highlight</button>
+    <button onclick="insertList()">• List</button>
+    <button onclick="insertEmoji()">😀</button>
+  </div>
+
+  <textarea id="textResult" placeholder="AI Enhanced result will apear here..."></textarea>
+
+  <div class="post-text">
+    <button onclick="postText(WS_AI_TEXT)">POST</button>
+    <button onclick="deleteRecord()">DELETE</button>
+  </div>
+</div>
+<script src="index.js"></script>
 </body>
 </html>
