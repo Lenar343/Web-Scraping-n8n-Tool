@@ -29,6 +29,10 @@
       <button onclick="loadArticles('WS_Crypto')">Load Crypto Article</button>
       <button onclick="generateAndDisplay('WS_Crypto')">Generate Crypto Article</button>
 
+      <select id="crypto-dropdown" onchange="selectArticle('WS_Crypto', this.value)">
+      <option value="">Select a crypto article</option>
+      </select>
+
       <div class="post-button-container">
         <button class="post-button" onclick="postContent()">POST</button>
       </div>
@@ -50,6 +54,10 @@
 
       <button onclick="loadArticles('WS_AI')">Load AI Article</button>
       <button onclick="generateAndDisplay('WS_AI')">Generate AI Article</button>
+
+      <select id="ai-dropdown" onchange="selectArticle('WS_AI', this.value)">
+      <option value="">Select an AI article</option>
+      </select>
 
       <div class="post-button-container">
         <button class="post-button" onclick="postContent()">POST</button>
@@ -74,6 +82,9 @@
       <button onclick="loadArticles('WS_ML')">Load ML Article</button>
       <button onclick="generateAndDisplay('WS_ML')">Generate ML Article</button>
 
+      <select id="ml-dropdown" onchange="selectArticle('WS_ML', this.value)">
+      <option value="">Select an ML article</option>
+      </select>
 
       <div class="post-button-container">
         <button class="post-button" onclick="postContent()">POST</button>
