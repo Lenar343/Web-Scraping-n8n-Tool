@@ -1,10 +1,35 @@
+const articleCache = {
+  WS_AI: [],
+  WS_Crypto: [],
+  WS_ML: []
+};
+
+function populateDropdown(table, articles) {
+  const dropdownIdMap = {
+    WS_AI: 'ai-dropdown',
+    WS_Crypto: 'crypto-dropdown',
+    WS_ML: 'ml-dropdown'
+  };
+  const dropdown = document.getElementById(dropdownIdMap[table]);
+  if (!dropdown) return;
+
+  dropdown.innerHTML = '<option value="">Select an article</option>';
+  articles.forEach(article => {
+    const id = article.id;
+    const title = article.title || article.fields?.Title || id;
+    const option = document.createElement('option');
+    option.value = id;
+    option.textContent = title;
+    dropdown.appendChild(option);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   triggerN8NOnLoad();
   // Optionally load dropdowns or articles
 //   loadDropdownOptions('WS_Crypto', 'crypto-dropdown');
 //   loadDropdownOptions('WS_AI', 'ai-dropdown');
 //   loadDropdownOptions('WS_ML', 'ml-dropdown');
-  // aaaaaaaaaa
 });
 
 async function triggerN8NOnLoad() {
@@ -116,11 +141,47 @@ async function loadArticles(table) {
       container.innerHTML = '<div class="article-block"><p>Error loading articles. Check console for details.</p></div>';
     }
   }
+
+    // Cache it
+    articleCache[table] = articles;
+
+    // Populate dropdown
+    populateDropdown(table, articles);
+
 }
 
 function execCmd(command, value = null) {
   document.execCommand(command, false, value);
 }
+
+function selectArticle(table, recordId) {
+  const containerIdMap = {
+    WS_AI: 'display-ai',
+    WS_Crypto: 'display-crypto',
+    WS_ML: 'display-ml'
+  };
+  const containerId = containerIdMap[table];
+  const container = document.querySelector(`#${containerId} .articles`);
+  if (!container) return;
+
+  const article = articleCache[table].find(item => item.id === recordId);
+  if (!article) {
+    container.innerHTML = '<div class="article-block"><p>Article not found in cache.</p></div>';
+    return;
+  }
+
+  const block = document.createElement('div');
+  block.className = 'article-block';
+  block.contentEditable = true;
+
+  const title = article.title || article.fields?.Title || "Untitled";
+  const content = article.content || article.fields?.Content || "No content";
+
+  block.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
+  container.innerHTML = '';
+  container.appendChild(block);
+}
+
 
 function insertEmoji() {
   const emoji = prompt("Enter emoji to insert:");
