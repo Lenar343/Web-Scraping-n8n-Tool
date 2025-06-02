@@ -3,15 +3,31 @@ body {
   padding: 20px;
   background: #f7f7f7;
 }
+
+
+
+
+
+
 .container {
   max-width: 800px;
   margin: auto;
 }
+
+
+
+
 .url-section {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
+
+
+
+
+
+
 #urlInput {
   flex: 1;
   padding: 12px;
@@ -33,6 +49,10 @@ textarea#textResult {
   margin-top: 10px;
   resize: vertical;
 }
+
+
+
+
 .editor-toolbar {
   display: flex;
   gap: 10px;
