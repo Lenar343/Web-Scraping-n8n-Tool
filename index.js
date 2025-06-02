@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function triggerN8NOnLoad() {
   try {
-    const res = await fetch('https://lenot344.app.n8n.cloud/webhook-test/refresh-articles', {
+    const res = await fetch('https://lenot344.app.n8n.cloud/webhook-test/refresh-all-articles', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
