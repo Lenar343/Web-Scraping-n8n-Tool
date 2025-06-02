@@ -1,7 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // On initial page load, you can optionally load articles
-  // loadArticles('WS_Crypto'); // Uncomment if you want to load on page load
+  triggerN8NOnLoad();
+  // Optionally load dropdowns or articles
+//   loadDropdownOptions('WS_Crypto', 'crypto-dropdown');
+//   loadDropdownOptions('WS_AI', 'ai-dropdown');
+//   loadDropdownOptions('WS_ML', 'ml-dropdown');
 });
+
+async function triggerN8NOnLoad() {
+  try {
+    const res = await fetch('https://lenot344.app.n8n.cloud/webhook-test/refresh-articles', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ source: 'website-refresh' }) // Optional data
+    });
+
+    if (!res.ok) {
+      throw new Error('n8n webhook failed');
+    }
+
+    console.log('✅ n8n triggered on page refresh.');
+  } catch (err) {
+    console.error('❌ Error triggering n8n:', err);
+  }
+}
+
 
 async function generateArticles(table) {
   console.log(`Triggering n8n refresh for ${table.toUpperCase()}...`);
