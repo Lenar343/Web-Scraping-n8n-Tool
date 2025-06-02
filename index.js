@@ -83,7 +83,6 @@ async function loadArticles(table) {
 
     const responseText = await res.text();
     console.log('Raw response:', responseText);
-    console.log('Response status:', res.status);
 
     let data;
     try {
@@ -91,42 +90,42 @@ async function loadArticles(table) {
       console.log('Parsed data:', data);
     } catch (parseError) {
       console.error('JSON parse error:', parseError);
-      throw new Error(`Invalid JSON response: ${responseText.substring(0, 100)}...`);
+      throw new Error(`Invalid JSON: ${responseText.substring(0, 100)}...`);
     }
+
+    const articles = Array.isArray(data) ? data : [data];
+
+    articleCache[table] = articles;
+
+    populateDropdown(table, articles);
 
     const containerIdMap = {
       WS_AI: 'display-ai',
       WS_Crypto: 'display-crypto',
       WS_ML: 'display-ml'
     };
-    const containerId = containerIdMap[table] || 'ai';
+    const containerId = containerIdMap[table] || 'display-ai';
     const container = document.querySelector(`#${containerId} .articles`);
     if (!container) {
       console.error(`Articles container not found for table ${table}`);
       return;
     }
 
-    container.innerHTML = ''; // Clear previous content
-
-    // Normalize data to an array
-    const articles = Array.isArray(data) ? data : [data];
-
-    console.log('Articles to display:', articles);
+    container.innerHTML = '';
 
     if (articles.length === 0) {
       container.innerHTML = '<div class="article-block"><p>No articles found.</p></div>';
       return;
     }
 
+    // ✅ Render each article
     articles.forEach((article, index) => {
-      console.log(`Processing article ${index}:`, article);
-
       const block = document.createElement('div');
       block.className = 'article-block';
       block.contentEditable = true;
 
       const title = article.title || article.id || `Article ${index + 1}`;
-      const content = article.content || article.Content || 'No content available';
+      const content = article.content || 'No content available';
 
       block.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
       container.appendChild(block);
@@ -135,19 +134,11 @@ async function loadArticles(table) {
     console.log(`Loaded ${articles.length} article(s) successfully`);
   } catch (err) {
     console.error(`Error loading ${table} articles:`, err);
-
     const container = document.querySelector('.articles');
     if (container) {
-      container.innerHTML = '<div class="article-block"><p>Error loading articles. Check console for details.</p></div>';
+      container.innerHTML = '<div class="article-block"><p>Error loading articles.</p></div>';
     }
   }
-
-    // Cache it
-    articleCache[table] = articles;
-
-    // Populate dropdown
-    populateDropdown(table, articles);
-
 }
 
 function execCmd(command, value = null) {
